@@ -160,11 +160,12 @@ nav.main {
 	position:absolute;
 	z-index:2;
 	top:0px;
+	height:$bs*2.5;
 		ul {
 		padding:0;
 		margin:0 auto;
 		width:$bs*45;
-		height:$bs*2.5;
+		height:100%;
 		li {
 			width:$bs*11;
 			height:$bs*2.5;
@@ -191,7 +192,7 @@ nav.main {
 					}
 				}
 				span {
-					height:$bs*1.6;
+					height:$bs*1.5;
 					width:100%;
 					background:white;
 					display:block;
@@ -199,7 +200,6 @@ nav.main {
 					font-size: $bs*1.1;
 					letter-spacing: $bs*.15;
 					font-weight:200;
-					line-height:$bs*1.4;
 					color:$main-c;
 				}		
 			}
@@ -271,8 +271,8 @@ div.btm {
 	width:100%;
 	z-index:1;
 	background:$main-c;
-	height:$bs*.9;
-	top:$bs*1.6;
+	height:$bs*1;
+	top:$bs*1.5;
 	min-height:1px;
 	margin:0px;
 }
