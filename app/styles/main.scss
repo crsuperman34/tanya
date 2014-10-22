@@ -6,16 +6,14 @@ $med-dark-c:  #837572;
 $highlight-c:   #00bfef;
 //////////////////////////////////////
 
-// sizes ////////////////////////////
-$bs: 12px;
-/////////////////////////////////////
-
-
 
 // fonts ////////////////////////////
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic");
 @mixin font {font-family: 'Source Sans Pro', sans-serif;}
 /////////////////////////////////////
+
+
+// global ///////////////////////////
 
 body {
   font-size:($bs);
@@ -34,7 +32,19 @@ div {
 	div {clear:none;}
 }
 
+div.float {
+	position:relative;
+	float:left;
+	clear:left;
+	width:100%;
+	min-height:$bs*2.5;
+}
 
+//////////////////////////////////
+
+
+
+// viewports ///////////////////////////
 @mixin width {	
 	float:none;
 	min-height:25px;
@@ -60,8 +70,9 @@ div {
 		clear:left;
 	}
 }
+//////////////////////////////////////
 
-
+// color boxes //////////////////////
 div.colors {
 	@include lgsize;
 	@include mdsize;
@@ -128,6 +139,12 @@ div.main-c {background:$main-c;}
 div.sec-c {background:$sec-c;}
 div.highlight-c {background:$highlight-c;}
 
+//////////////////////////////////////////////////////
+
+
+
+// text styles ///////////////////////////
+
 div.fonts {
 	@include lgsize;
 	@include mdsize;
@@ -153,8 +170,11 @@ a {
 		color:$highlight-c;
 	}
 }
+///////////////////////////////////////////
 
 
+
+// menu ///////////////////////////
 nav.main {
 	width:100%;
 	position:absolute;
@@ -276,13 +296,11 @@ div.btm {
 	min-height:1px;
 	margin:0px;
 }
-div.float {
-	position:relative;
-	float:left;
-	clear:left;
-	width:100%;
-	min-height:$bs*2.5;
-}
+////////////////////////////////////////////
+
+
+
+// more button ////////////////////////////
 
 a.more {
 	display:block;
@@ -308,10 +326,16 @@ a.more {
 		width:100%;
 		margin:0;
 		box-sizing: border-box;
-		padding-left:$bs*.25;		float:left;
+		padding-left:$bs*.25;		
+		float:left;
 		clear:left;
 	}
 }
+///////////////////////////////////////////
+
+
+
+// By-line ///////////////////////////////
 
 p.byline {
 	display:block;
@@ -326,6 +350,11 @@ p.byline {
 		color:$main-c;
 	}
 }
+
+/////////////////////////////////////////
+
+
+// Forms ////////////////////////////////
 
 @mixin formfont	{
 	color:$main-c;
@@ -388,7 +417,11 @@ form {
 		}
 	}
 }
+////////////////////////////////////////
 
+
+
+// Footer //////////////////////////////
 $svgsize: 10;
 div.footer {
 	background:url(../images/swan.png);
@@ -400,40 +433,4 @@ div.footer {
 	margin:($bs*2) auto;
 	float:none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////
