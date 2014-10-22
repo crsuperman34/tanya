@@ -14,7 +14,7 @@ $highlight-c:   #00bfef;
 
 
 // global ///////////////////////////
-
+$bs: 12px;
 body {
   font-size:($bs);
   @include font;
@@ -427,8 +427,8 @@ div.footer {
 	background:url(../images/swan.png);
 	background-image:url(../images/swan.svg), none;
 	background-size:contain;
-	width:($bs*$svgsize)*.64;
 	height:($bs*$svgsize);
+	width:($bs*$svgsize)*.62;
 	opacity:.3;
 	margin:($bs*2) auto;
 	float:none;
