@@ -388,3 +388,52 @@ form {
 		}
 	}
 }
+
+$svgsize: 10;
+div.footer {
+	background:url(../images/swan.png);
+	background-image:url(../images/swan.svg), none;
+	background-size:contain;
+	width:($bs*$svgsize)*.64;
+	height:($bs*$svgsize);
+	opacity:.3;
+	margin:($bs*2) auto;
+	float:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
