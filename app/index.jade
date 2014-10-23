@@ -1,57 +1,14 @@
 extends jade/layout
-block content	
-	.float
-		.colors
-			.dark-c 
-				span dark
-			.med-dark-c 
-				span medium dark
-			.main-c
-				span main
-			.sec-c 
-				span secondary
-			.highlight-c 
-				span highlight	
-	.float
-		.fonts
-			h1 Heading One
-			p
-				| Sed ut perspiciatis unde omnis iste natus error sit
-				| voluptatem accusantium doloremque laudantium, totam 
-				| rem aperiam, eaque ipsa quae ab illo inventore veritatis 
-				| t quasi architecto beatae vitae dicta sunt explicabo. 
-				| Nemo enim ipsam voluptatem quia voluptas sit aspernattur 
-				| aut odit aut fugit, sed quia consequuntur magni dolores 
-				| eos qui ratione vol
-			a(href='#') this is a link
-	.buttons
-		.float
-			nav.main
-				ul
-					li 
-						a(href='#')
-							span navbutton
-					li 
-						a.active(href='#') 
-							span active
-					li 
-						a.hover(href='#') 
-							span hover
-			div.btm
-		.float
-			a.more(href="#")
-				span ...
-				div more pieces
-				span ...
-		.float
-			p.byline
-				span by
-				| Tanya N Schulze
-		.float
-			form
-				textarea
-				input(type='text') 
-				input(type='text') 
-				input(type='submit')
-		.float
-			.footer
+block content
+	include jade/_nav.jade
+	ul.art
+		li
+			a(href="#")
+				img(src="#")
+		li
+			a(href="#")
+				img(src="#")
+		li
+			a(href="#")
+				img(src="#")
+	include jade/_more.jade

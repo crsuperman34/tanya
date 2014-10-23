@@ -14,7 +14,7 @@ $highlight-c:   #00bfef;
 
 
 // global ///////////////////////////
-$bs: 12px;
+$bs: 11px;
 
 body {
   font-size:($bs);
@@ -39,6 +39,8 @@ div.float {
 	clear:left;
 	width:100%;
 	min-height:$bs*2.5;
+	height:100%;
+	opacity:.5;
 }
 
 //////////////////////////////////
@@ -180,16 +182,24 @@ a {
 
 
 
-// menu ///////////////////////////
+// menu navigation ///////////////////////////
+
+//margin top
+$mt: ($bs*8);
+div.navcontainer {
+	float:left;
+	width:100%;
+	height:($bs*2.5)+$mt;
+}
 nav.main {
 	width:100%;
 	position:absolute;
 	z-index:2;
 	top:0px;
-	height:$bs*2.5;
+	margin-top:$mt 0;
 		ul {
 		padding:0;
-		margin:0 auto;
+		margin:$mt auto;
 		width:$bs*45;
 		height:100%;
 		li {
@@ -246,7 +256,6 @@ nav.main {
 	nav.main {
 			ul {
 			width:$bs*28.8;
-			margin:0 auto;
 			min-height:1px;
 			li {
 				width:$bs*8 ;
@@ -275,7 +284,6 @@ nav.main {
 			min-height:1px;
 			li {
 				width:33.33%;
-				margin:0;
 				a {
 					span {
 						font-size: $bs*.8;
@@ -300,7 +308,7 @@ div.btm {
 	height:$bs*1;
 	top:$bs*1.5;
 	min-height:1px;
-	margin:0px;
+	margin:$mt 0;
 }
 ////////////////////////////////////////////
 
