@@ -1,7 +1,7 @@
 // colors ////////////////////////////
 $main-c:  #cdccc5;
 $sec-c:   #e4e3db;
-$dark-c:  black;
+$dark-c:  #322e1d;
 $med-dark-c:  #837572;
 $highlight-c:   #00bfef;
 //////////////////////////////////////
@@ -14,11 +14,12 @@ $highlight-c:   #00bfef;
 
 
 // global ///////////////////////////
-$bs: 11px;
+$bs: 12px;
 
 body {
   font-size:($bs);
   @include font;
+  color:$dark-c;
 }
 
 div {
@@ -40,7 +41,6 @@ div.float {
 	width:100%;
 	min-height:$bs*2.5;
 	height:100%;
-	opacity:.5;
 }
 
 //////////////////////////////////
@@ -51,7 +51,7 @@ div.float {
 
 $lg: $bs*61.5;
 $md: $bs*45;
-$sm: $bs*23;
+$sm: $bs*28;
 
 @mixin width {	
 	float:none;
@@ -199,7 +199,7 @@ nav.main {
 	margin-top:$mt 0;
 		ul {
 		padding:0;
-		margin:$mt auto;
+		margin:$mt auto 0 auto; 
 		width:$bs*45;
 		height:100%;
 		li {
