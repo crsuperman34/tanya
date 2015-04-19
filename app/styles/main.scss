@@ -223,6 +223,7 @@ nav.main {
 				text-decoration:none;
 				&:hover {
 					background:$sec-c;
+					border-bottom:solid $highlight-c 1.5px;
 					span {					
 					}
 				}
