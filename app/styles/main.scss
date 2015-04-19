@@ -17,9 +17,9 @@ $highlight-c:   #00bfef;
 $bs: 12px;
 
 body {
-  font-size:($bs);
-  @include font;
-  color:$dark-c;
+	font-size:($bs);
+	@include font;
+	color:$dark-c;
 }
 
 div {
@@ -152,7 +152,6 @@ div.highlight-c {background:$highlight-c;}
 
 
 // text styles ///////////////////////////
-
 div.fonts {
 	@include lgsize;
 	@include mdsize;
@@ -160,9 +159,9 @@ div.fonts {
 	@include width;
 }
 h1 {
-	  font-weight:600;
-	  font-size:($bs*1.2);
-	  letter-spacing:($bs *.04);
+	font-weight:600;
+	font-size:($bs*1.2);
+	letter-spacing:($bs *.04);
 }
 p {
 	font-weight:300;
@@ -236,7 +235,7 @@ nav.main {
 					font-size: $bs*1.1;
 					letter-spacing: $bs*.15;
 					font-weight:200;
-					color:$main-c;
+					// color:red;
 				}		
 			}
 			a.active {
@@ -252,6 +251,7 @@ nav.main {
 	}
 }
 
+/*
 @media (max-width: $md){
 	nav.main {
 			ul {
@@ -267,7 +267,7 @@ nav.main {
 				}
 				a.active {
 					span {
-						font-size: $bs*.8;
+						
 						font-weight:300;
 					}
 				}
@@ -275,8 +275,9 @@ nav.main {
 		}
 	}
 }
+*/
 
-@media (max-width: $sm){
+@media (max-width: $md){
 	nav.main {
 			ul {
 			width:100%;
@@ -285,18 +286,7 @@ nav.main {
 			li {
 				width:33.33%;
 				margin:0px;
-				a {
-					span {
-						font-size: $bs*.8;
-					}		
-				}
-				a.active {
-					span {
-						font-size: $bs*.8;
-						font-weight:300;
-					}
-				}
-			}	
+			}
 		}
 	}
 }
@@ -354,16 +344,11 @@ a.more {
 
 p.byline {
 	display:block;
-	width:$bs*11.5;
+	width:$bs*12.5;
 	text-align:center;
 	font-size:$bs*1.2;
 	margin:0 auto;
-	color:$dark-c;
-	opacity:.65;
-	span {
-		margin-right:$bs*.4;
-		color:$main-c;
-	}
+	color:$med-dark-c;
 }
 
 /////////////////////////////////////////
