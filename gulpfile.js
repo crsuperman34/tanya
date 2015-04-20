@@ -1,43 +1,52 @@
+/*global -$ */
 'use strict';
-// generated on 2014-10-22 using generator-gulp-webapp 0.1.0
+// generated on 2015-04-20 using generator-gulp-webapp 0.3.0
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+
+gulp.task('views', function () {
+  return gulp.src('app/*.jade')
+    .pipe($.jade({pretty: true}))
+    .pipe(gulp.dest('.tmp'));
+});
 
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
-    .pipe($.plumber())
-    .pipe($.rubySass({
-      style: 'expanded',
-      precision: 10
+    .pipe($.sourcemaps.init())
+    .pipe($.sass({
+      outputStyle: 'nested', // libsass doesn't support expanded yet
+      precision: 10,
+      includePaths: ['.'],
+      onError: console.error.bind(console, 'Sass error:')
     }))
-    .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('.tmp/styles'));
+    .pipe($.postcss([
+      require('autoprefixer-core')({browsers: ['last 1 version']})
+    ]))
+    .pipe($.sourcemaps.write())
+    .pipe(gulp.dest('.tmp/styles'))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('jshint', function () {
   return gulp.src('app/scripts/**/*.js')
+    .pipe(reload({stream: true, once: true}))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.jshint.reporter('fail'));
+    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-gulp.task('views', function () {
-    return gulp.src(['app/**/*.jade', '!app/jade/*.jade'])
-        .pipe($.jade({pretty: true}))
-        .pipe(gulp.dest('.tmp'));
-});
+gulp.task('html', ['views', 'styles'], function () {
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-gulp.task('html', ['styles', 'views'], function () {
-  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
-
-  return gulp.src('.tmp/*.html')
+return gulp.src(['app/*.html', '.tmp/*.html'])
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.csso()))
-    .pipe($.rev())
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe($.revReplace())
+    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('dist'));
 });
 
@@ -45,23 +54,27 @@ gulp.task('images', function () {
   return gulp.src('app/images/**/*')
     .pipe($.cache($.imagemin({
       progressive: true,
-      interlaced: true
+      interlaced: true,
+      // don't remove IDs from SVGs, they are often used
+      // as hooks for embedding and styling
+      svgoPlugins: [{cleanupIDs: false}]
     })))
     .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('fonts', function () {
-  return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
-    .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-    .pipe($.flatten())
+  return gulp.src(require('main-bower-files')({
+    filter: '**/*.{eot,svg,ttf,woff,woff2}'
+  }).concat('app/fonts/**/*'))
+    .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
-    '!app/**/*.jade',
-    'node_modules/apache-server-configs/dist/.htaccess'
+    '!app/*.html',
+    '!app/*.jade'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));
@@ -69,27 +82,31 @@ gulp.task('extras', function () {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('connect', ['styles'], function () {
-  var serveStatic = require('serve-static');
-  var serveIndex = require('serve-index');
-  var app = require('connect')()
-    .use(require('connect-livereload')({port: 35729}))
-    .use(serveStatic('app'))
-    .use(serveStatic('.tmp'))
-    // paths to bower_components should be relative to the current file
-    // e.g. in app/index.html you should use ../bower_components
-    .use('/bower_components', serveStatic('bower_components'))
-    .use(serveIndex('app'));
+gulp.task('serve', ['views', 'styles', 'fonts'], function () {
+  browserSync({
+    notify: false,
+    port: 9000,
+    server: {
+      baseDir: ['.tmp', 'app'],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
+    }
+  });
 
-  require('http').createServer(app)
-    .listen(9000)
-    .on('listening', function () {
-      console.log('Started connect web server on http://local:9000');
-    });
-});
+  // watch for changes
+  gulp.watch([
+    'app/*.html',
+    '.tmp/*.html',
+    'app/scripts/**/*.js',
+    'app/images/**/*',
+    '.tmp/fonts/**/*'
+  ]).on('change', reload);
 
-gulp.task('serve', ['connect', 'views', 'watch'], function () {
-  require('opn')('http://0.0.0.0:9000/style.html');
+  gulp.watch('app/**/*.jade', ['views']);
+  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/fonts/**/*', ['fonts']);
+  gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
 // inject bower components
@@ -98,31 +115,15 @@ gulp.task('wiredep', function () {
 
   gulp.src('app/styles/*.scss')
     .pipe(wiredep({
-      ignorePath: '../'
+      ignorePath: /^(\.\.\/)+/
     }))
     .pipe(gulp.dest('app/styles'));
 
   gulp.src('app/jade/*.jade')
     .pipe(wiredep({
-      ignorePath: '../'
+      ignorePath: /^(\.\.\/)*\.\./
     }))
     .pipe(gulp.dest('app/jade'));
-});
-
-gulp.task('watch', ['connect'], function () {
-  $.livereload.listen();
-
-  // watch for changes
-  gulp.watch([
-    'app/**/*.jade',
-    '.tmp/styles/**/*.css',
-    'app/scripts/**/*.js',
-    'app/images/**/*'
-  ]).on('change', $.livereload.changed);
-
-  gulp.watch('app//**/*.jade', ['views']);
-  gulp.watch('app/styles/**/*.scss', ['styles']);
-  gulp.watch('bower.json', ['wiredep']);
 });
 
 gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {

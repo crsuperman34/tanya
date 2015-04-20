@@ -3,9 +3,8 @@
   "private": true,
   "dependencies": {
     "jquery": "~2.1.1",
-    "svg4everybody": "*"
-
+    "svg4everybody": "*",
+    "headroom.js": "~0.7.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
