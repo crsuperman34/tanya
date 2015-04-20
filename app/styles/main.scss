@@ -80,8 +80,25 @@ $sm: $bs*28;
 	}
 }
 //////////////////////////////////////
-
+@-webkit-keyframes NAME-YOUR-ANIMATION {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes NAME-YOUR-ANIMATION {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes NAME-YOUR-ANIMATION {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes NAME-YOUR-ANIMATION {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
 // color boxes //////////////////////
+
+
 div.colors {
 	@include lgsize;
 	@include mdsize;
@@ -96,6 +113,7 @@ div.colors {
 		box-sizing:border-box;
 		padding:$bs;
 		float:left;
+		transition:all 1s ease;
 		&:nth-child(1){
 			margin-left:0px;
 		}
