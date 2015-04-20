@@ -41,6 +41,7 @@ div.float {
 	width:100%;
 	min-height:$bs*2.5;
 	height:100%;
+	background-color:white;
 }
 
 //////////////////////////////////
@@ -435,3 +436,42 @@ div.footer {
 	float:none;
 }
 ///////////////////////////////////////
+
+// portfolio //////////////////////////
+div.content {
+	width:1000px;
+	margin:0 auto; 
+	float:none;
+	div.scroll {overflow:hidden;}
+	div.detail {
+		width:480px;
+		height:2000px;
+		overflow:hidden;
+		div.display {
+			width:380px;
+			height:380px;
+			background-color:red;
+			margin:45px auto; 
+		}
+	}
+	div {
+		float:right;
+		margin:0;
+		width:480px;
+		padding:10px;
+		/*div:nth-child(2){padding-top:45px;}
+		 div.left {background-color:blue;}
+		div.right {background-color:red;} */
+		div {
+			width:220px;
+			padding:0;
+			height:2000px;
+;			div.artobj {
+				margin-top:20px;
+				background-color:green;
+				width:200px;
+				height:200px;
+			}
+		}
+	}
+}

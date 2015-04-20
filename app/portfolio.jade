@@ -2,17 +2,18 @@ extends jade/layout
 block content
 	include jade/_nav.jade
 	.content
-		p hello
 		.detail
+			.display(data-stellar-ratio=".75")
+			.text
 		.scroll
-			.left
+			.left(data-stellar-ratio="2.5")
 				.artobj
 				.artobj
 				.artobj
 				.artobj
 				.artobj
 				.artobj
-			.right
+			.right(data-stellar-ratio="2")
 				.artobj
 				.artobj
 				.artobj

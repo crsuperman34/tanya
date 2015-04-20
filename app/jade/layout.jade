@@ -39,8 +39,13 @@ html
     script(src='/bower_components/headroom.js/dist/headroom.js')
     script(src='/bower_components/headroom.js/dist/jQuery.headroom.js')
     script(src='/bower_components/headroom.js/dist/angular.headroom.js')
+    script(src='/bower_components/stellar.js/jquery.stellar.js')
     // endbower
     // endbuild
     // build:js scripts/main.js
     script(src="scripts/main.js")
     // endbuild
+    script(type='text/javascript').
+        $.stellar({
+            positionProperty: 'transform'
+            });
