@@ -1,14 +1,15 @@
 extends jade/layout
 block content
 	include jade/_nav.jade
+	.sampleclass
 	.content
 		.detail
-			.display(data-stellar-ratio=".75")
+			.display(data-stellar-ratio=".75" data-stellar-vertical-offset="0")
 				p.
 					some description
-					goes here.
+					goes here.		
 		.scroll
-			.left(data-stellar-ratio="2.5")
+			.left(data-stellar-ratio="2.5" data-stellar-vertical-offset="0")
 				.artobj
 					.overlay
 						p This is alot of text to see what happens.
@@ -27,8 +28,10 @@ block content
 				.artobj
 					.overlay
 						p This is alot of text to see what happens.
-
-			.right(data-stellar-ratio="2")
+				.artobj
+					.overlay
+						p This is alot of text to see what happens.
+			.right(data-stellar-ratio="2" data-stellar-vertical-offset="0")
 				.artobj
 					.overlay
 						p This is alot of text to see what happens.
