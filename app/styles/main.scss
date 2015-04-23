@@ -206,6 +206,9 @@ div.navcontainer {
 	float:left;
 	width:100%;
 	height:($bs*2.5)+$mt;
+	@media (max-width:$sm) {
+		height:auto;
+	} 
 }
 nav.main {
 	width:100%;
@@ -309,6 +312,18 @@ nav.main {
 	}
 }
 
+@media (max-width: $sm){
+	nav.main {
+			ul {
+				margin:0 auto;
+			li {
+				width:33.33%;
+				margin:0px;
+			}
+		}
+	}
+}
+
 div.btm {
 	position:absolute;
 	width:100%;
@@ -318,7 +333,11 @@ div.btm {
 	top:$bs*1.5;
 	min-height:1px;
 	margin:$mt 0;
+	@media (max-width: $sm){
+		margin:0;
+	}
 }
+
 ////////////////////////////////////////////
 
 
@@ -490,6 +509,10 @@ div.content {
 			background-color:red;
 			margin:0 auto;
 			float:none;
+			@media (max-width:$sm) {
+				height:320px;
+				width:320px;
+			}
 		}
 		p {
 			display:block;
