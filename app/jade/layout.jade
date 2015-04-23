@@ -43,13 +43,27 @@ html
     script(src="scripts/main.js")
     // endbuild
     script(type='text/javascript').
+        
         $.stellar({
             positionProperty: 'transform',
             horizontalScrolling:false,
             responsive: true
         });
+
+        $(window).resize( function() {
+            window.location.href = window.location.href;
+        });
+
         $(window).scroll(function(i){
             var scrollVar = $(window).scrollTop();
             $('.detail').css({'top': 3*scrollVar });
             $('.detail').css({'opacity':( 100-scrollVar )/100});
         })
+        
+        if ($(window).width() >360) {
+            $('.left').attr('data-stellar-ratio', '2.5');
+            $('.right').attr('data-stellar-ratio', '2');
+        }
+        else {
+            $('.scroll').attr('data-stellar-ratio', '2');
+            } 
