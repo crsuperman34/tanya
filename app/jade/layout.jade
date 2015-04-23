@@ -47,11 +47,8 @@ html
         $.stellar({
             positionProperty: 'transform',
             horizontalScrolling:false,
-            responsive: true
-        });
-
-        $(window).resize( function() {
-            window.location.href = window.location.href;
+            responsive: true,
+            hideDistantElements: false
         });
 
         $(window).scroll(function(i){

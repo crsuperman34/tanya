@@ -526,14 +526,12 @@ div.content {
 	div.scroll {
 		margin:0;
 		width:480px;
-		padding:10px;
-		height:2000px;
-		@media (max-width: $lg) {
+		padding:10px
+;		@media (max-width: $lg) {
 			margin:0 auto;
 			float:none;
 			width:480px;
 			padding:0;
-			height:2000px;
 		}
 		@media (max-width: $sm) {
 			width:100%;
