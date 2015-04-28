@@ -63,4 +63,10 @@ html
         }
         else {
             $('.scroll').attr('data-stellar-ratio', '2');
-            } 
+            }
+
+        $('.scroll a').click(function(){
+            $('img.display').attr('src', $(this).find('img').attr('src'));
+            $('html, body').animate({ scrollTop: 0 }, 150);
+            $('.detail p').text($(this).find('img').attr('rel'));
+        }); 
