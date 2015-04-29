@@ -56,7 +56,7 @@ img {
 
 // viewports ///////////////////////////
 
-$lg: $bs*65;
+$lg: $bs*67;
 $md: $bs*45;
 $sm: $bs*30;
 
@@ -210,9 +210,6 @@ div.navcontainer {
 	float:left;
 	width:100%;
 	height:($bs*2.5)+$mt;
-	@media (max-width:$sm) {
-		height:auto;
-	} 
 }
 nav.main {
 	width:100%;
@@ -301,33 +298,6 @@ nav.main {
 	}
 }
 */
-
-@media (max-width: $md){
-	nav.main {
-			ul {
-			width:100%;
-			float:left;
-			min-height:1px;
-			li {
-				width:33.33%;
-				margin:0px;
-			}
-		}
-	}
-}
-
-@media (max-width: $sm){
-	nav.main {
-			ul {
-				margin:0 auto;
-			li {
-				width:33.33%;
-				margin:0px;
-			}
-		}
-	}
-}
-
 div.btm {
 	position:absolute;
 	width:100%;
@@ -338,7 +308,50 @@ div.btm {
 	min-height:1px;
 	margin:$mt 0;
 	@media (max-width: $sm){
-		margin:0;
+		
+	}
+}
+
+@media (max-width: $lg) {
+	nav.main {
+		ul {
+			width:100%;
+			float:left;
+			min-height:1px;
+			margin:45px auto;
+			li {
+				width:33.33%;
+				margin:0px;
+			}
+		}
+	}
+	div.navcontainer {
+		height:75px;
+	}
+	div.btm {
+		margin:45px auto;
+	}
+}
+
+@media (max-width:$md) {
+
+}
+
+@media (max-width: $sm) {
+	nav.main {
+		ul {
+			margin:0 auto;
+			li {
+				width:33.33%;
+				margin:0px;
+			}
+		}
+	}
+	div.btm {
+		margin:0 auto;
+	}
+	div.navcontainer {
+		height:auto;
 	}
 }
 
@@ -488,6 +501,9 @@ div.content {
 	overflow:hidden;
 	@media (max-width: $lg) {
 	width:100%;
+	}
+	@media (max-width:$md) {
+		margin:10px auto;
 	}
 	@media (max-width: $sm){
 	width:100%;

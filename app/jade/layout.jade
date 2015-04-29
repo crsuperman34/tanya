@@ -53,20 +53,32 @@ html
 
         $(window).scroll(function(i){
             var scrollVar = $(window).scrollTop();
-            $('.detail').css({'top': 3*scrollVar });
             $('.detail').css({'opacity':( 100-scrollVar )/100});
         })
         
-        if ($(window).width() >360) {
+        if ($(window).width() < 527) {
+            $('.scroll').attr('data-stellar-ratio', '2');
+            $('.left').attr('data-stellar-ratio', '1');
+            $('.right').attr('data-stellar-ratio', '1');
+        }
+        else {
+            $('.scroll').attr('data-stellar-ratio', '1');
             $('.left').attr('data-stellar-ratio', '2.5');
             $('.right').attr('data-stellar-ratio', '2');
         }
+
+        if ($(window).width() > 800) {
+            $('.detail').attr('data-stellar-ratio', '.2');
+        }
         else {
-            $('.scroll').attr('data-stellar-ratio', '2');
-            }
+            $('.detail').attr('data-stellar-ratio', '.75');
+        }
 
         $('.scroll a').click(function(){
             $('img.display').attr('src', $(this).find('img').attr('src'));
-            $('html, body').animate({ scrollTop: 0 }, 150);
+            $('.detail').animate({opacity:1}, 300);
             $('.detail p').text($(this).find('img').attr('rel'));
+            if ($(window).width() < 800) {
+                $('html, body').animate({scrollTop:0}, '500', 'swing');
+            }
         }); 
