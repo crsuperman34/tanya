@@ -559,6 +559,8 @@ div.content {
 		}
 		@media (max-width: $sm) {
 			width:100%;
+			float:left;
+			
 		}
 		div.left, div.right { 
 			width:240px; 
