@@ -42,43 +42,64 @@ html
     // build:js scripts/main.js
     script(src="scripts/main.js")
     // endbuild
+
+    input(name='refreshed' value='no' id='refreshed')
+
     script(type='text/javascript').
         
-        $.stellar({
-            positionProperty: 'transform',
-            horizontalScrolling:false,
-            responsive: true,
-            hideDistantElements: false
+        function runStellar() {
+            
+            $.stellar({
+                responsive: true,
+                positionProperty: 'transform',
+                horizontalScrolling:false,
+                hideDistantElements: false
+            });
+        }
+        
+        var windowsize = $(window).width();
+
+        function whatSize() {
+            if (windowsize < 527) {
+                $('.scroll').attr('data-stellar-ratio', '3');
+                $('.left').removeAttr('data-stellar-ratio');
+                $('.right').removeAttr('data-stellar-ratio');
+                $('.right').removeAttr('style');
+                $('.left').removeAttr('style');
+            }
+            else {
+                $('.scroll').attr('data-stellar-ratio', '1');
+                $('.left').attr('data-stellar-ratio', '2.5');
+                $('.right').attr('data-stellar-ratio', '2');
+                $('.detail').attr('data-stellar-ratio', '.75');
+            }
+        }
+        
+        function scrolltoTop() {
+            
+            $('.scroll a').click(function(){
+                
+                $('img.display').attr('src', $(this).find('img').attr('src'));
+                $('.detail').animate({opacity:1}, 300);
+                $('.detail p').text($(this).find('img').attr('rel'));
+                
+                if (windowsize < 800) {
+                    $('html, body').animate({scrollTop:0}, '500', 'swing');
+                }
+            });
+
+            $(window).scroll(function(i){
+                var scrollVar = $(window).scrollTop();
+                $('.detail').css({'opacity':( 100-scrollVar )/100});
+            })
+        }
+
+        $(window).resize(function() {
+            windowsize = $(window).width();
+            $(whatSize);
         });
 
-        $(window).scroll(function(i){
-            var scrollVar = $(window).scrollTop();
-            $('.detail').css({'opacity':( 100-scrollVar )/100});
-        })
-        
-        if ($(window).width() < 527) {
-            $('.scroll').attr('data-stellar-ratio', '2');
-            $('.left').attr('data-stellar-ratio', '1');
-            $('.right').attr('data-stellar-ratio', '1');
-        }
-        else {
-            $('.scroll').attr('data-stellar-ratio', '1');
-            $('.left').attr('data-stellar-ratio', '2.5');
-            $('.right').attr('data-stellar-ratio', '2');
-        }
+        $(whatSize);
+        $(runStellar);
+        $(scrolltoTop);
 
-        if ($(window).width() > 800) {
-            $('.detail').attr('data-stellar-ratio', '.2');
-        }
-        else {
-            $('.detail').attr('data-stellar-ratio', '.75');
-        }
-
-        $('.scroll a').click(function(){
-            $('img.display').attr('src', $(this).find('img').attr('src'));
-            $('.detail').animate({opacity:1}, 300);
-            $('.detail p').text($(this).find('img').attr('rel'));
-            if ($(window).width() < 800) {
-                $('html, body').animate({scrollTop:0}, '500', 'swing');
-            }
-        }); 
