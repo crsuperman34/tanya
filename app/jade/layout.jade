@@ -66,12 +66,15 @@ html
                 $('.right').removeAttr('data-stellar-ratio');
                 $('.right').removeAttr('style');
                 $('.left').removeAttr('style');
+                $(runStellar);
             }
             else {
-                $('.scroll').attr('data-stellar-ratio', '1');
+                $('.scroll').removeAttr('data-stellar-ratio');
+                $('.scroll').removeAttr('style');
                 $('.left').attr('data-stellar-ratio', '2.5');
                 $('.right').attr('data-stellar-ratio', '2');
                 $('.detail').attr('data-stellar-ratio', '.75');
+                $(runStellar);
             }
         }
         
@@ -96,10 +99,11 @@ html
 
         $(window).resize(function() {
             windowsize = $(window).width();
-            $(whatSize);
+
+            whatSize();
+            scrolltoTop();
         });
 
-        $(whatSize);
-        $(runStellar);
-        $(scrolltoTop);
+            whatSize();
+            scrolltoTop();
 
