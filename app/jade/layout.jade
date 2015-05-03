@@ -41,68 +41,7 @@ html
     // endbuild
     // build:js scripts/main.js
     script(src="scripts/main.js")
+    script(src="scripts/portfolio.js")
     // endbuild
 
     input(name='refreshed' value='no' id='refreshed')
-
-    script(type='text/javascript').
-        
-        function runStellar() {
-            
-            $.stellar({
-                responsive: true,
-                positionProperty: 'transform',
-                horizontalScrolling:false,
-                hideDistantElements: false
-            });
-        }
-        
-        var windowsize = $(window).width();
-
-        function whatSize() {
-            if (windowsize < 527) {
-                $('.scroll').attr('data-stellar-ratio', '3');
-                $('.left').removeAttr('data-stellar-ratio');
-                $('.right').removeAttr('data-stellar-ratio');
-                $('.right').removeAttr('style');
-                $('.left').removeAttr('style');
-                $(runStellar);
-            }
-            else {
-                $('.scroll').removeAttr('data-stellar-ratio');
-                $('.scroll').removeAttr('style');
-                $('.left').attr('data-stellar-ratio', '2.5');
-                $('.right').attr('data-stellar-ratio', '2');
-                $('.detail').attr('data-stellar-ratio', '.75');
-                $(runStellar);
-            }
-        }
-        
-        function scrolltoTop() {
-            
-            $('.scroll a').click(function(){
-                
-                $('img.display').attr('src', $(this).find('img').attr('src'));
-                $('.detail').animate({opacity:1}, 300);
-                $('.detail p').text($(this).find('img').attr('rel'));
-                
-                if (windowsize < 800) {
-                    $('html, body').animate({scrollTop:0}, '500', 'swing');
-                }
-            });
-
-            $(window).scroll(function(i){
-                var scrollVar = $(window).scrollTop();
-                $('.detail').css({'opacity':( 100-scrollVar )/100});
-            })
-        }
-
-        $(window).resize(function() {
-            windowsize = $(window).width();
-
-            whatSize();
-            scrolltoTop();
-        });
-
-            whatSize();
-            scrolltoTop();
