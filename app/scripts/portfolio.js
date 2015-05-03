@@ -1,52 +1,26 @@
-var windowsize = $(window).width();
-
-function runStellar() {
-    $.stellar({
-        responsive: true,
-        positionProperty: 'transform',
-        horizontalScrolling:false,
-        hideDistantElements: false
-    });
-}
-
-function whatSize() {
-    if (windowsize < 527) {
-        $('.scroll').attr('data-stellar-ratio', '2');
-        $('.left').removeAttr('data-stellar-ratio');
-        $('.right').removeAttr('data-stellar-ratio');
-        $('.right').removeAttr('style');
-        $('.left').removeAttr('style');
-        $(runStellar);
-    }
-    else {
-        $('.scroll').removeAttr('data-stellar-ratio');
-        $('.scroll').removeAttr('style');
-        $('.left').attr('data-stellar-ratio', '2.5');
-        $('.right').attr('data-stellar-ratio', '2');
-        $(runStellar);
-    }
-}
-
-function scrolltoTop() {
-
-    $('.scroll a').click(function(){
-        if ($('.content').width() < 1000) {
-            $('html,body').animate({scrollTop:0});
-        }http://localhost:9000/portfolio.html
-
-        $('img.display').attr('src', $(this).find('img').attr('src'));
-        $('.detail p').text($(this).find('img').attr('rel'));
-    });
-}
-
-
-$(window).resize(function() {
-    windowsize = $(window).width();
-    scrolltoTop();    
-    whatSize();
+$(window).scroll(function(e){
+	parallax();
 });
 
-$(document).ready(function() {
-    scrolltoTop();
-    whatSize();
+function parallax(){
+	s = $(window).scrollTop();
+		
+	numa = -6.16e1;
+	numb = 8.53e-1;
+	numc = 2.26e-5;
+
+	$('.detail').css('top',
+			numa + (numb*s) + numc*Math.pow(s,2)
+	);
+	$('.detail').css('opactiy',100-s/100);
+
+
+	$('.two').css('top',s*.75);
+	$('.one').css('top',s*.6);
+}
+
+$(document).ready( function() {
+	$('a').click(function() {
+		$('.detail').fadeIn();
+	});
 });
