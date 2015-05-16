@@ -17,6 +17,7 @@ $highlight-c:   #00bfef;
 $bs: 1em;
 
 body {
+	overflow:hidden;
 	@include font;
 	color:$dark-c;
 	padding:0;
@@ -51,18 +52,11 @@ img {
 
 //////////////////////////////////
 
-
-
 // viewports ///////////////////////////
 
 $lg: $bs*67;
 $md: $bs*45;
 $sm: $bs*30;
-
-
-@media only screen and (max-width: $lg){
-	.sampleClass {float:none;}
-}
 
 @mixin width {	
 	float:none;
@@ -507,6 +501,7 @@ div.footer {
 		position:absolute;
 		width:$bs*28;
 		left:60%;
+		transition:all 200ms ease;
 		img {
 			width:100%;
 			@media (max-width:$bs*39.5) {
@@ -514,7 +509,6 @@ div.footer {
 			}
 		}
 		z-index: 1;
-		transition:all 1s ease;
 		@media (max-width:$bs*70) {
 			margin-right:auto;
 			margin-left:auto;
