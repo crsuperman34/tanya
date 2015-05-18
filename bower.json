@@ -4,7 +4,6 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "svg4everybody": "*",
-    "stellar.js": "~0.6.2"
-  },
-  "devDependencies": {}
+    "iscroll": "https://github.com/cubiq/iscroll.git#~5.1.3"
+  }
 }

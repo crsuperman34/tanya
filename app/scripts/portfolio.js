@@ -1,59 +1,33 @@
 
-function parallax(){
-	// detect scroll position
-	s = $(window).scrollTop();
+function IscrollIt() {
 
-	// set opacity for scroll
-	if(s>100) {
-			$('.detail').css('opacity',0);
-	}
-	else{
-		$('.detail').css('opacity',1);
-	}
+	if (parseInt($('#content').css('width')) < 615 ) {
 
-	// position element's top
-	numa = -6.16e1;
-	numb = 8.53e-1;
-	numc = 2.26e-5;
-
-	$('.detail').css({
-    transform: 'translate3d(0,'+Math.round(numa + (numb*s) + numc*Math.pow(s,2))+'px, 0)'
-})
-
-	$('.two').css('top',s*.75);
-	$('.one').css('top',s*.6);
-}//end function
-
-function linkit() {
-	if ($(window).width() > 1110) {
-		$('a').removeAttr('href');
 	}
 	else {
-		$('a').attr('href','#');
+		var myScroll = new IScroll('#dvone', {
+		    mouseWheel: true
+		  });
+
+		var myScroll2 = new IScroll('#dvtwo', {
+		    mouseWheel: true
+		  });
 	}
-}// end function
+}
 
-// on load
-$(document).ready(function() {
-	linkit();
-});
-
-// on resize
 $(window).resize(function() {
-	linkit();
+    windowsize = $(window).width();
+    IscrollIt();
 });
 
-// on click
-$( 'a' ).click(function() {
-	$('.detail').css('opacity',1);
-});
+$(document).ready(function() {
+    IscrollIt();
 
-//on scroll
-document.addEventListener('scroll', function() {
-    parallax();
-});
-
-// This is the magic, this gives me "live" scroll events
-document.addEventListener('gesturechange', function() {
-	parallax();
+		$('.wrapper a').click(function(e) {
+	    e.preventDefault();
+	    $('img.display').fadeTo(100,0.8);
+			$('img.display').attr('src', $(this).find('img').attr('src')).fadeTo(100,1);
+			$('#detail p').text($(this).find('img').attr('rel'));
+			$('html,body').animate({scrollTop:0});
+		});
 });
