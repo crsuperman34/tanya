@@ -9,17 +9,36 @@ function loadIt() {
 	myScroll2 = new IScroll('#dvtwo', {mouseWheel: true});
 }
 
+function widthIt() {
+	
+	var ulOneHeight = 0;
+	var ulTwoHeight = 0;
+
+	$('#ulone li').each(function() {
+		ulOneHeight += parseInt($(this).outerHeight(true), 10);
+	});
+	
+	$('#ultwo li').each(function() {
+		ulTwoHeight += parseInt($(this).outerHeight(true), 10);
+	});
+
+	var divHeight = Math.max(ulOneHeight, ulTwoHeight);
+
+	$('#ulone, #ultwo').css('height',divHeight);
+
+}
+
+
 $(document).ready(function() {
-	
+	$('#listcolumn, #dvone, #dvtwo').css('height', $(window).height());
+
 	var whatSize = parseInt($(window).width());
-	
-	$('.wrapper a').bind("click touchstart", function(e) {
-		e.preventDefault();
+
+		$('.wrapper a').hammer().bind('press click', function(e) {
+			e.preventDefault()
 		$('img.display').fadeTo(100,0.8);
 		$('img.display').attr('src', $(this).find('img').attr('src')).fadeTo(100,1);
-		$('#detail p').text(function(){
-			$(this).find('img').attr('rel');
-		});
+		$('#detail p').text($(this).find('img').attr('rel'));
 		$('html,body').animate({scrollTop:0});
 	});
 	
@@ -27,18 +46,20 @@ $(document).ready(function() {
 		loadIt();
 	}
 
+			widthIt();
+
 });
 
 $(window).resize(function() {
 
 	var whatSize = parseInt($(window).width());
 
-	  myScroll.destroy();
-    myScroll2.destroy();
-    $(document).removeAttr('style');
-  
-    if (whatSize>615) {
-    	loadIt();
-    }
+		myScroll.destroy();
+		myScroll2.destroy();
+		$(document).removeAttr('style');
+		
+		if (whatSize>615) {
+			loadIt();
+		}
 
 });
