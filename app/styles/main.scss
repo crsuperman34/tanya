@@ -531,6 +531,7 @@ div.footer {
 		overflow:hidden;
 		margin-top:0;
 		left:5*$bs;
+		height:1000px;
 		@media (max-width:$bs*70) {
 			margin-right:auto;
 			margin-left:auto;
@@ -553,6 +554,7 @@ div.footer {
 				padding:0;
 			}
 			#ulone, #ultwo {
+				min-height:1200px;
 			}
 			ul {
 				li:nth-child(1) {margin-top:0;}
