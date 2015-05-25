@@ -16,6 +16,23 @@ $highlight-c:   #00bfef;
 // global ///////////////////////////
 $bs: 1em;
 
+// logo ////////////
+
+.style0{fill: white;}
+.style2{fill: white;}
+.style1{fill:	lighten($med-dark-c, 20%);}
+.style3{fill:	white;}
+
+svg {
+	width:$bs*8;
+	height:$bs*8;
+	display:block;
+	float:none;
+	margin:$bs auto;
+}
+
+/////////////////////
+
 html {
 }
 
@@ -203,10 +220,10 @@ $mt: ($bs*8);
 div.navcontainer {
 	float:left;
 	width:100%;
-	height:($bs*2.5)+$mt;
-	margin-bottom:3*$bs;
+	margin-bottom:1.5*$bs;
+	height:40px;
 	@media(max-width:70*$bs) {
-		margin-bottom:1.5*$bs;
+		
 	}
 	@media(max-width:39.5*$bs) {
 		margin-bottom:0*$bs;
@@ -220,13 +237,13 @@ nav.main {
 	margin-top:$mt 0;
 		ul {
 		padding:0;
-		margin:$mt auto 0 auto; 
+		margin:0 auto;
 		width:$bs*45;
 		height:100%;
 		transition:all 300ms ease;
 		@media (min-width:$bs*100) {
-		margin:$mt 0 0 $bs*10; 
 		}
+		li a.active {border-bottom:1px solid $highlight-c;} 
 		li {
 			width:$bs*11;
 			height:$bs*2.5;
@@ -311,8 +328,9 @@ div.btm {
 	height:$bs*1;
 	top:$bs*1.5;
 	min-height:1px;
-	margin:$mt 0;
-			transition:all 300ms ease;
+	margin:0 auto;
+	transition:all 300ms ease;
+
 
 	@media (max-width: $sm){
 		
@@ -325,18 +343,14 @@ div.btm {
 			width:100%;
 			float:left;
 			min-height:1px;
-			margin:45px auto;
 			li {
 				width:33.33%;
 				margin:0px;
 			}
 		}
 	}
-	div.navcontainer {
-		height:75px;
-	}
 	div.btm {
-		margin:45px auto;
+		margin:0 auto;
 	}
 }
 
@@ -347,7 +361,6 @@ div.btm {
 @media (max-width: $sm) {
 	nav.main {
 		ul {
-			margin:0 auto;
 			li {
 				width:33.33%;
 				margin:0px;
@@ -356,9 +369,6 @@ div.btm {
 	}
 	div.btm {
 		margin:0 auto;
-	}
-	div.navcontainer {
-		height:auto;
 	}
 }
 
@@ -511,7 +521,8 @@ div.footer {
 		left:43.75*$bs;
 		transition:all 300ms ease;
 		img {
-			width:100%;
+			width:500px;
+			height:500px;
 			@media (max-width:$bs*25) {
 				border-radius:0%;
 				overflow:hidden;
@@ -538,7 +549,7 @@ div.footer {
 			right:0;
 			left:0;
 			margin-top:0;
-			top:$bs*33;
+			top:$bs*37;
 			float:none;
 			width:33*$bs;
 		}
@@ -570,7 +581,7 @@ div.footer {
 						float:none;
 						position:relative;
 						img {
-							width:100%;
+							
 						}
 						p {
 							z-index:2;
@@ -603,18 +614,19 @@ div.footer {
 @media (max-width:$bs*39.5) {
 	#content {
 		#detail {
+			margin: $bs*2 auto;
 			width:100%;
 			img {
 				border-radius:0%;
-				min-width:340px;
-				max-height:340px;
 				overflow:hidden;
+				width:350px;
+				height:350px;
 			}
 		}
 		#listcolumn {
 			width:15*$bs;
 			height:auto;
-			top:26*$bs;
+			top:28*$bs;
 			.wrapper {
 				float:left;
 				height:auto;

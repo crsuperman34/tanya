@@ -61,9 +61,14 @@ $(document).ready(function() {
 	$('.wrapper a').on('tap', function(e) {
 			e.preventDefault();
 		$('img.display').fadeTo(100,0.8);
-		$('img.display').attr('src', $(this).find('img').attr('src')).fadeTo(100,1);
+		$('img.display').attr('src', 
+			
+	$(this).find('img').attr('src').replace("sm", "transparent").replace("SmSq", "")
+
+			).fadeTo(100,1);
+		
 		$('#detail p').text($(this).find('img').attr('rel'));
-		$('html,body').animate({scrollTop:0});
+		$('html,body').animate({scrollTop:220});
 	});
 
 	// determine();
