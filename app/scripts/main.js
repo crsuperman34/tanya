@@ -1,3 +1,4 @@
 console.log('\'Allo \'Allo!');
 
-$(".float").headroom();
+$('#navigation').headroom();
+$('svg').headroom();
